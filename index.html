@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blackcarbon — Премиальный древесный уголь</title>
+  <meta name="description" content="Премиальный кусковой древесный уголь Blackcarbon. Отборная древесина, чистый жар, стабильное горение." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="assets/logo/logo-round.png" type="image/png" />
+</head>
+<body>
+  <!-- Шапка -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <nav class="nav nav--desktop" aria-label="Основное меню слева">
+        <a href="#about">Уголь</a>
+        <a href="#partner">Стать партнёром</a>
+      </nav>
+
+      <a class="logo" href="#" aria-label="Blackcarbon — на главную">
+        <img src="assets/logo/logo-round.png" alt="Blackcarbon" width="640" height="640" />
+      </a>
+
+      <div class="nav nav--right">
+        <nav class="nav nav--desktop" aria-label="Основное меню справа">
+          <a href="#about">О нас</a>
+          <a href="#contacts">Контакты</a>
+        </nav>
+        <div class="header-actions">
+          <button class="icon-btn menu-toggle" type="button" aria-label="Открыть меню" data-menu-open>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Мобильное меню -->
+  <div class="mobile-panel" data-menu>
+    <div class="mobile-panel__sheet">
+      <button class="icon-btn mobile-panel__close" type="button" aria-label="Закрыть" data-menu-close>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <a href="#about" data-menu-close>Уголь</a>
+      <a href="#partner" data-menu-close>Стать партнёром</a>
+      <a href="#about" data-menu-close>О нас</a>
+      <a href="#contacts" data-menu-close>Контакты</a>
+    </div>
+  </div>
+
+  <main>
+    <!-- Hero slider — узбекские блюда на углях -->
+    <section class="hero" data-hero-slider>
+      <div class="hero__slides" aria-hidden="true">
+        <div class="hero__slide is-active">
+          <img src="assets/photos/hero-1.jpg" alt="Шашлык на углях" />
+        </div>
+        <div class="hero__slide">
+          <img src="assets/photos/hero-2.jpg" alt="Кебаб на мангале" />
+        </div>
+        <div class="hero__slide">
+          <img src="assets/photos/hero-3.jpg" alt="Мясо на древесном угле" />
+        </div>
+        <div class="hero__slide">
+          <img src="assets/photos/hero-4.jpg" alt="Шашлыки и овощи" />
+        </div>
+        <div class="hero__slide">
+          <img src="assets/photos/hero-5.jpg" alt="Говядина на огне" />
+        </div>
+      </div>
+      <div class="hero__overlay"></div>
+      <div class="hero__content">
+        <h1>Зажги праздник</h1>
+        <a class="btn btn--orange" href="#about">Купить сейчас</a>
+      </div>
+    </section>
+
+    <!-- Преимущества сервиса -->
+    <section class="trust">
+      <div class="container trust__grid">
+        <article class="trust__item reveal">
+          <h3>Экологически чистый продукт!</h3>
+          <p>Без запаха</p>
+        </article>
+        <article class="trust__item reveal">
+          <h3>Гарантия качества</h3>
+          <p>100% удовлетворённость. Без лишних вопросов.</p>
+        </article>
+        <article class="trust__item reveal">
+          <h3>2X Горячее!</h3>
+          <p>Горение до 2 часов</p>
+        </article>
+        <article class="trust__item reveal">
+          <h3>Сервис высшего уровня</h3>
+          <p>Отправка заказов в течение 24 часов.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Не весь уголь одинаков -->
+    <section class="banner" id="about">
+      <div class="banner__media">
+        <img src="assets/photos/embers.jpg" alt="Жар древесного угля" />
+      </div>
+      <div class="banner__overlay"></div>
+      <div class="banner__layout">
+        <div class="banner__content reveal">
+          <h2>Не весь уголь одинаков</h2>
+          <div class="banner__tags">
+            <span>Отборная берёза</span>
+            <span class="x">×</span>
+            <span>Чистый пиролиз</span>
+            <span class="x">×</span>
+            <span>Ровный жар</span>
+            <span class="x">×</span>
+            <span>Без лишнего дыма</span>
+          </div>
+          <a class="btn btn--outline" href="#partner">Связаться с нами</a>
+        </div>
+        <div class="banner__product reveal">
+          <img src="assets/photos/charcoal.png" alt="Уголь Blackcarbon, мешки 1 кг и 3 кг" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Рецепты -->
+    <section class="recipes" id="recipes">
+      <div class="container">
+        <div class="recipes__head reveal">
+          <div>
+            <p class="recipes__eyebrow">Рецепты и советы</p>
+            <h2>Овладей огнём</h2>
+          </div>
+          <a class="btn btn--outline" href="#recipes">Все рецепты</a>
+        </div>
+        <div class="recipe-grid">
+          <button class="recipe-card reveal" type="button" data-recipe="chicken">
+            <div class="recipe-card__media">
+              <img src="assets/photos/recipe-1.jpg" alt="Курица на углях" />
+            </div>
+            <div class="recipe-card__body">
+              <p class="recipe-card__cat">Курица</p>
+              <h3>Шашлык из курицы на углях</h3>
+              <p class="recipe-card__meta">Легко · около 1 часа</p>
+            </div>
+          </button>
+          <button class="recipe-card reveal" type="button" data-recipe="lamb">
+            <div class="recipe-card__media">
+              <img src="assets/photos/recipe-2.jpg" alt="Шашлык из баранины" />
+            </div>
+            <div class="recipe-card__body">
+              <p class="recipe-card__cat">Баранина</p>
+              <h3>Классический шашлык из баранины</h3>
+              <p class="recipe-card__meta">Средняя сложность · 1–2 часа</p>
+            </div>
+          </button>
+          <button class="recipe-card reveal" type="button" data-recipe="beef">
+            <div class="recipe-card__media">
+              <img src="assets/photos/recipe-3.jpg" alt="Говядина на мангале" />
+            </div>
+            <div class="recipe-card__body">
+              <p class="recipe-card__cat">Говядина</p>
+              <h3>Говяжий шашлык на мангале</h3>
+              <p class="recipe-card__meta">Средняя сложность · около 1.5 часа</p>
+            </div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Заявка -->
+    <section class="lead" id="partner">
+      <div class="container">
+        <div class="lead__box reveal">
+          <div class="lead__intro">
+            <p class="lead__eyebrow"></p>
+            <h2>Напишите нам</h2>
+            <p></p>
+          </div>
+          <form class="lead__form" data-lead-form>
+            <div class="lead__row">
+              <label>
+                <span>Фамилия</span>
+                <input type="text" name="lastName" required placeholder="Каримов" autocomplete="family-name" />
+              </label>
+              <label>
+                <span>Имя</span>
+                <input type="text" name="firstName" required placeholder="Алишер" autocomplete="given-name" />
+              </label>
+            </div>
+            <label>
+              <span>Почта</span>
+              <input type="email" name="email" required placeholder="you@mail.com" autocomplete="email" />
+            </label>
+            <label>
+              <span>Сообщение</span>
+              <textarea name="message" rows="5" required placeholder="Напишите, чем можем помочь"></textarea>
+            </label>
+            <button class="btn btn--orange lead__submit" type="submit">Отправить</button>
+            <p class="lead__note" data-lead-msg hidden></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Подвал -->
+  <footer class="site-footer" id="newsletter">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="office">
+          <h4>Локация Офиса</h4>
+          <div class="office-frame">
+            <div class="office-map" data-office-map></div>
+            <a class="office-route" href="https://www.google.com/maps/dir/?api=1&amp;destination=41.170705,69.258281" target="_blank" rel="noopener noreferrer">Построить маршрут</a>
+          </div>
+        </div>
+        <div id="contacts">
+          <h4>Контакты</h4>
+          <p>+998 (90) 336-08-06<br />Пн–Пт, 9:00–18:00</p>
+          <p><a href="mailto:sales@blackcarbon.uz">sales@blackcarbon.uz</a></p>
+          <p><a href="#contacts">Связаться с нами</a></p>
+        </div>
+        <div>
+          <h4>Помощь</h4>
+          <ul>
+            <li><a href="#">Доставка</a></li>
+            <li><a href="#">Возврат и обмен</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+        <div id="stores">
+          <h4>Компания</h4>
+          <ul>
+            <li><a href="#about">О нас</a></li>
+            <li><a href="#partner">Стать партнёром</a></li>
+            <li><a href="#stores">Найти дилера</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© <span data-year></span> Blackcarbon. Все права защищены.</div>
+        <div class="socials" aria-label="Соцсети">
+          <span aria-label="Facebook" title="Facebook">
+            <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+          </span>
+          <span aria-label="Instagram" title="Instagram">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+          </span>
+          <span aria-label="YouTube" title="YouTube">
+            <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+          </span>
+        </div>
+        <div>
+          <a href="#">Политика конфиденциальности</a>
+          ·
+          <a href="#">Условия использования</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a class="float-rewards" href="#partner">Стать партнёром</a>
+
+  <div class="recipe-modal" data-recipe-modal hidden>
+    <div class="recipe-modal__backdrop" data-recipe-close></div>
+    <article class="recipe-modal__panel" role="dialog" aria-modal="true" aria-labelledby="recipe-title">
+      <button class="recipe-modal__close" type="button" data-recipe-close aria-label="Закрыть">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <p class="recipe-modal__cat" data-recipe-cat></p>
+      <h2 id="recipe-title" data-recipe-title></h2>
+      <p class="recipe-modal__meta" data-recipe-meta></p>
+      <p class="recipe-modal__lead" data-recipe-lead></p>
+      <div class="recipe-modal__grid">
+        <div>
+          <h3>Ингредиенты</h3>
+          <ul data-recipe-ingredients></ul>
+        </div>
+        <div>
+          <h3>Как жарить</h3>
+          <ol data-recipe-steps></ol>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
