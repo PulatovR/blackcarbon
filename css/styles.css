@@ -95,10 +95,12 @@ input {
 
 .nav a,
 .nav button {
+  flex-shrink: 0;
   background: none;
   border: 0;
   padding: 0;
   cursor: pointer;
+  white-space: nowrap;
   font-family: var(--font-display);
   font-size: 14px;
   font-weight: 600;
