@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Кабинет — Blackcarbon</title>
+  <meta name="description" content="Кабинет Blackcarbon." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="assets/logo/logo-round.png" type="image/png" />
+</head>
+<body data-title-key="accountMeta">
+  <header class="site-header">
+    <div class="site-header__inner">
+      <nav class="nav nav--desktop" data-i18n-aria="navLeft" aria-label="Основное меню слева">
+        <a href="product.html" data-i18n="navCoal">Уголь</a>
+        <a href="index.html#partner" data-i18n="navPartner">Стать партнером</a>
+      </nav>
+      <a class="logo" href="index.html" data-i18n-aria="logoHome" aria-label="Blackcarbon — на главную">
+        <img src="assets/logo/logo-round.png" alt="Blackcarbon" width="640" height="640" />
+      </a>
+      <div class="nav nav--right">
+        <nav class="nav nav--desktop" data-i18n-aria="navRight" aria-label="Основное меню справа">
+          <a href="index.html#about" data-i18n="navAbout">О нас</a>
+          <a href="index.html#contacts" data-i18n="navContacts">Контакты</a>
+        </nav>
+        <div class="header-actions">
+          <div class="lang" role="group" data-i18n-aria="langLabel" aria-label="Язык">
+            <button type="button" data-set-lang="ru">RU</button>
+            <button type="button" data-set-lang="uz">UZ</button>
+            <button type="button" data-set-lang="en">EN</button>
+          </div>
+          <a class="icon-btn" href="account.html" data-i18n-aria="account" aria-label="Кабинет">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 19.2c1.4-3 3.6-4.4 6.5-4.4s5.1 1.4 6.5 4.4"/></svg>
+          </a>
+          <a class="icon-btn cart-btn" href="cart.html" data-i18n-aria="cart" aria-label="Корзина">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6.2 7.2h14.2l-1.5 8.1a2 2 0 0 1-2 1.6H9.1a2 2 0 0 1-2-1.6L5.4 4.8H3"/><circle cx="9.2" cy="19.6" r="1.25" fill="currentColor" stroke="none"/><circle cx="16.8" cy="19.6" r="1.25" fill="currentColor" stroke="none"/></svg>
+            <span class="cart-count" data-cart-count hidden>0</span>
+          </a>
+          <button class="icon-btn menu-toggle" type="button" data-i18n-aria="menuOpen" aria-label="Открыть меню" data-menu-open>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-panel" data-menu>
+    <div class="mobile-panel__sheet">
+      <button class="icon-btn mobile-panel__close" type="button" data-i18n-aria="menuClose" aria-label="Закрыть" data-menu-close>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <div class="lang lang--menu" role="group" data-i18n-aria="langLabel" aria-label="Язык">
+        <button type="button" data-set-lang="ru">RU</button>
+        <button type="button" data-set-lang="uz">UZ</button>
+        <button type="button" data-set-lang="en">EN</button>
+      </div>
+      <a href="product.html" data-menu-close data-i18n="navCoal">Уголь</a>
+      <a href="index.html#partner" data-menu-close data-i18n="navPartner">Стать партнером</a>
+      <a href="index.html#about" data-menu-close data-i18n="navAbout">О нас</a>
+      <a href="index.html#contacts" data-menu-close data-i18n="navContacts">Контакты</a>
+    </div>
+  </div>
+
+  <main>
+    <div class="container account">
+      <h1 data-i18n="accountTitle">Кабинет</h1>
+      <p data-i18n="accountLead">Вход и история заказов появятся вместе с оплатой. Пока можно собрать корзину и посмотреть, как будет выглядеть покупка.</p>
+      <a class="btn btn--orange" href="product.html" data-i18n="accountCta">К углю</a>
+    </div>
+  </main>
+
+  <footer class="site-footer" id="newsletter">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="office">
+          <h4 data-i18n="officeTitle">Локация Офиса</h4>
+          <div class="office-frame">
+            <div class="office-map" data-office-map></div>
+            <div class="route-picker">
+              <button type="button" class="office-route" data-route-open data-i18n="route" aria-expanded="false" aria-haspopup="true">Построить маршрут</button>
+              <div class="route-menu" data-route-menu hidden>
+                <a href="https://www.google.com/maps/dir/?api=1&amp;destination=41.170705,69.258281" target="_blank" rel="noopener noreferrer" data-i18n="routeGoogle">Google Карты</a>
+                <a href="https://yandex.uz/maps/?rtext=~41.170705,69.258281&amp;rtt=auto" target="_blank" rel="noopener noreferrer" data-i18n="routeYandex">Яндекс Карты</a>
+                <a href="https://3.redirect.appmetrica.yandex.com/route?end-lat=41.170705&amp;end-lon=69.258281&amp;ref=blackcarbon&amp;appmetrica_tracking_id=25395763362139037" target="_blank" rel="noopener noreferrer" data-i18n="routeTaxi">Яндекс Такси</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h4 data-i18n="navContacts">Контакты</h4>
+          <p>+998 (90) 336-08-06<br /><span data-i18n="hours">Пн–Пт, 9:00–18:00</span></p>
+          <p><a href="mailto:sales@blackcarbon.uz">sales@blackcarbon.uz</a></p>
+          <p><a href="index.html#partner" data-i18n="contact">Связаться с нами</a></p>
+        </div>
+        <div>
+          <h4 data-i18n="help">Помощь</h4>
+          <ul>
+            <li><a href="index.html#contacts" data-i18n="delivery">Доставка</a></li>
+            <li><a href="index.html#contacts" data-i18n="returns">Возврат и обмен</a></li>
+            <li><a href="index.html#contacts">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 data-i18n="company">Компания</h4>
+          <ul>
+            <li><a href="index.html#about" data-i18n="navAbout">О нас</a></li>
+            <li><a href="index.html#partner" data-i18n="navPartner">Стать партнером</a></li>
+            <li><a href="index.html#contacts" data-i18n="dealer">Найти дилера</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© <span data-year></span> Blackcarbon. <span data-i18n="rights">Все права защищены.</span></div>
+        <div class="socials" aria-label="Соцсети">
+          <span aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></span>
+          <span aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></span>
+          <span aria-label="YouTube" title="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></span>
+        </div>
+        <div>
+          <a href="index.html" data-i18n="privacy">Политика конфиденциальности</a>
+          ·
+          <a href="index.html" data-i18n="terms">Условия использования</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/shop.js"></script>
+</body>
+</html>

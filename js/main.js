@@ -1,4 +1,53 @@
 (() => {
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  if (!location.hash) window.scrollTo(0, 0);
+
+  const i18n = window.BC_I18N || {};
+  const langs = ["ru", "uz", "en"];
+  let currentLang = "ru";
+  let openRecipeId = null;
+
+  const applyLang = (lang) => {
+    if (!langs.includes(lang) || !i18n[lang]) lang = "ru";
+    currentLang = lang;
+    const pack = i18n[lang];
+    const t = pack.ui;
+    document.documentElement.lang = lang;
+    const titleKey = document.body.dataset.titleKey;
+    if (titleKey && t[titleKey]) document.title = t[titleKey];
+    else if (!titleKey && t.metaTitle) document.title = t.metaTitle;
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta && !titleKey && t.metaDesc) meta.setAttribute("content", t.metaDesc);
+    document.querySelectorAll("[data-i18n]").forEach((el) => {
+      const value = t[el.dataset.i18n];
+      if (value != null) el.textContent = value;
+    });
+    document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+      const value = t[el.dataset.i18nPlaceholder];
+      if (value != null) el.setAttribute("placeholder", value);
+    });
+    document.querySelectorAll("[data-i18n-alt]").forEach((el) => {
+      const value = t[el.dataset.i18nAlt];
+      if (value != null) el.setAttribute("alt", value);
+    });
+    document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
+      const value = t[el.dataset.i18nAria];
+      if (value != null) el.setAttribute("aria-label", value);
+    });
+    document.querySelectorAll("[data-set-lang]").forEach((btn) => {
+      const on = btn.dataset.setLang === lang;
+      btn.classList.toggle("is-active", on);
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+    try {
+      localStorage.setItem("bc-lang", lang);
+    } catch (err) {
+      /* private mode */
+    }
+    if (openRecipeId) openRecipe(openRecipeId);
+    document.dispatchEvent(new CustomEvent("bc:lang", { detail: currentLang }));
+  };
+
   const year = document.querySelector("[data-year]");
   if (year) year.textContent = String(new Date().getFullYear());
 
@@ -38,30 +87,65 @@
     reveals.forEach((el) => el.classList.add("is-visible"));
   }
 
-  // Заявка — позже отправим в Telegram
+  // Заявка открывает чат поддержки в Telegram с готовым текстом. Сервера нет.
+  const SUPPORT_USER = "RAR0806";
   const leadForm = document.querySelector("[data-lead-form]");
-  const leadMsg = document.querySelector("[data-lead-msg]");
   leadForm?.addEventListener("submit", (e) => {
     e.preventDefault();
-    if (leadMsg) {
-      leadMsg.hidden = false;
-      leadMsg.textContent = "Спасибо! Заявка принята. Скоро свяжемся.";
-    }
+    const t = i18n[currentLang]?.ui || {};
+    const data = new FormData(leadForm);
+    const clean = (value) => String(value || "").replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, "").trim();
+    const text = [
+      t.leadTgHello || "Здравствуйте! Заявка с сайта Blackcarbon.",
+      "",
+      `${t.labelLast || "Фамилия"}: ${clean(data.get("lastName"))}`,
+      `${t.labelFirst || "Имя"}: ${clean(data.get("firstName"))}`,
+      `${t.labelPhone || "Телефон"}: ${clean(data.get("phone"))}`,
+      `${t.labelEmail || "Почта"}: ${clean(data.get("email"))}`,
+      "",
+      `${t.labelMessage || "Сообщение"}:`,
+      clean(data.get("message")),
+    ].join("\n").slice(0, 3500);
+    const url = `https://t.me/${SUPPORT_USER}?text=${encodeURIComponent(text)}`;
+    const popup = window.open(url, "_blank", "noopener,noreferrer");
+    if (!popup) window.location.href = url;
     leadForm.reset();
+  });
+
+  const routeOpen = document.querySelector("[data-route-open]");
+  const routeMenu = document.querySelector("[data-route-menu]");
+  const setRouteMenu = (open) => {
+    if (!routeMenu || !routeOpen) return;
+    routeMenu.hidden = !open;
+    routeOpen.setAttribute("aria-expanded", open ? "true" : "false");
+  };
+  routeOpen?.addEventListener("click", (event) => {
+    event.stopPropagation();
+    setRouteMenu(routeMenu.hidden);
+  });
+  routeMenu?.addEventListener("click", (event) => event.stopPropagation());
+  document.addEventListener("click", (event) => {
+    if (event.target.closest("[data-route-open], [data-route-menu], .office-pin")) return;
+    setRouteMenu(false);
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setRouteMenu(false);
   });
 
   const officeMap = document.querySelector("[data-office-map]");
   if (officeMap && window.L) {
     const lat = 41.170705;
     const lng = 69.258281;
-    const route = "https://www.google.com/maps/dir/?api=1&destination=41.170705,69.258281";
     const map = L.map(officeMap, {
       scrollWheelZoom: true,
       zoomControl: false,
       attributionControl: false,
+      keyboard: false,
       maxZoom: 19,
       minZoom: 12,
     }).setView([lat, lng], 16);
+    officeMap.removeAttribute("tabindex");
+    if (!location.hash) window.scrollTo(0, 0);
     L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}", {
       maxZoom: 19,
     }).addTo(map);
@@ -71,83 +155,21 @@
       iconSize: [46, 46],
       iconAnchor: [23, 23],
     });
-    L.marker([lat, lng], { icon, title: "Blackcarbon", keyboard: true })
+    L.marker([lat, lng], { icon, title: "Blackcarbon", keyboard: false })
       .addTo(map)
-      .on("click", () => window.open(route, "_blank", "noopener"));
-    requestAnimationFrame(() => map.invalidateSize());
+      .on("click", (event) => {
+        L.DomEvent.stop(event);
+        setTimeout(() => setRouteMenu(true), 0);
+      });
+    requestAnimationFrame(() => {
+      map.invalidateSize();
+      if (!location.hash) window.scrollTo(0, 0);
+    });
   }
-
-  const recipes = {
-    chicken: {
-      cat: "Курица",
-      title: "Шашлык из курицы на углях",
-      meta: "4 порции · маринад 40 минут · жарка 15 минут",
-      lead: "Кавказский и узбекский вариант из бедра: лук, соль и немного зиры. Кислоту не льют — курица и так успевает пропитаться.",
-      ingredients: [
-        "1 кг куриного бедра без кости",
-        "2 крупные луковицы",
-        "1 ч. л. соли",
-        "½ ч. л. молотой зиры",
-        "чёрный перец по вкусу",
-        "1 ст. л. растительного масла",
-        "пучок кинзы и лепёшка для подачи",
-      ],
-      steps: [
-        "Бедро нарежьте кусками примерно 4 см. Лук — полукольцами, разомните с солью, чтобы дал сок.",
-        "Смешайте мясо с луком, зирой, перцем и маслом. Оставьте в холодильнике на 40–60 минут.",
-        "Перед жаркой стряхните лук: на шампуре он сгорает раньше мяса.",
-        "Нанижите неплотно. Жарьте над ровными углями без пламени 12–15 минут, часто переворачивая.",
-        "Подавайте сразу, с кольцами свежего лука, кинзой и горячей лепёшкой.",
-      ],
-    },
-    lamb: {
-      cat: "Баранина",
-      title: "Классический шашлык из баранины",
-      meta: "4–5 порций · маринад 3–4 часа · жарка 15–20 минут",
-      lead: "Узбекская классика: жирная баранина, много лука, зира и кусочек курдюка между мясом. Уксус в маринад не кладут.",
-      ingredients: [
-        "1,2 кг баранины (окорок или корейка)",
-        "150 г курдючного сала",
-        "3–4 крупные луковицы",
-        "1 ч. л. зиры",
-        "соль и чёрный перец",
-        "сумах, зелень и лепёшка для подачи",
-      ],
-      steps: [
-        "Мясо зачистите от плёнок и нарежьте кусками 3–4 см. Курдюк — кубиками чуть меньше.",
-        "Лук нарежьте полукольцами и разомните с солью. Добавьте зиру и перец, перемешайте с бараниной.",
-        "Закройте и уберите в холодильник на 3–4 часа. Дольше, на ночь, тоже можно.",
-        "Лук с шампура снимите. Чередуйте мясо и курдюк, нанизывайте свободно.",
-        "Жарьте над тлеющими углями без открытого огня 15–20 минут. Подавайте с луком, сумахом и лепёшкой.",
-      ],
-    },
-    beef: {
-      cat: "Говядина",
-      title: "Говяжий шашлык на мангале",
-      meta: "4 порции · маринад 4–6 часов · жарка 15–18 минут",
-      lead: "Кавказский шашлык из мякоти: луковый сок и газированная вода размягчают говядину, а специй остаётся мало.",
-      ingredients: [
-        "1 кг говяжьей мякоти (вырезка или тонкий край)",
-        "3 луковицы",
-        "100 мл газированной воды",
-        "1 ч. л. соли",
-        "½ ч. л. молотого кориандра",
-        "чёрный перец по вкусу",
-        "лук, зелень и лаваш для подачи",
-      ],
-      steps: [
-        "Говядину нарежьте поперёк волокон кусками около 4 см.",
-        "Одну луковицу натрите и отожмите сок. Две другие нарежьте кольцами.",
-        "Смешайте мясо с луковым соком, кольцами лука, солью, кориандром, перцем и водой.",
-        "Маринуйте в холодильнике 4–6 часов. Перед жаркой дайте лишней жидкости стечь.",
-        "Жарьте на сильном ровном жаре 15–18 минут до румяной корочки. Внутри мясо оставьте сочным.",
-      ],
-    },
-  };
 
   const modal = document.querySelector("[data-recipe-modal]");
   const openRecipe = (id) => {
-    const recipe = recipes[id];
+    const recipe = i18n[currentLang]?.recipes?.[id];
     if (!modal || !recipe) return;
     modal.querySelector("[data-recipe-cat]").textContent = recipe.cat;
     modal.querySelector("[data-recipe-title]").textContent = recipe.title;
@@ -159,6 +181,7 @@
     modal.querySelector("[data-recipe-steps]").innerHTML = recipe.steps
       .map((item) => `<li>${item}</li>`)
       .join("");
+    openRecipeId = id;
     modal.hidden = false;
     document.body.style.overflow = "hidden";
     modal.querySelector(".recipe-modal__close")?.focus();
@@ -166,9 +189,21 @@
 
   const closeRecipe = () => {
     if (!modal) return;
+    openRecipeId = null;
     modal.hidden = true;
     document.body.style.overflow = "";
   };
+
+  document.querySelectorAll("[data-set-lang]").forEach((btn) => {
+    btn.addEventListener("click", () => applyLang(btn.dataset.setLang));
+  });
+  let saved = "ru";
+  try {
+    saved = localStorage.getItem("bc-lang") || "ru";
+  } catch (err) {
+    saved = "ru";
+  }
+  applyLang(saved);
 
   document.querySelectorAll("[data-recipe]").forEach((card) => {
     card.addEventListener("click", () => openRecipe(card.dataset.recipe));

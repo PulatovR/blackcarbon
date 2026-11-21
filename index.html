@@ -17,22 +17,34 @@
   <!-- Шапка -->
   <header class="site-header">
     <div class="site-header__inner">
-      <nav class="nav nav--desktop" aria-label="Основное меню слева">
-        <a href="#about">Уголь</a>
-        <a href="#partner">Стать партнёром</a>
+      <nav class="nav nav--desktop" data-i18n-aria="navLeft" aria-label="Основное меню слева">
+        <a href="product.html" data-i18n="navCoal">Уголь</a>
+        <a href="#partner" data-i18n="navPartner">Стать партнером</a>
       </nav>
 
-      <a class="logo" href="#" aria-label="Blackcarbon — на главную">
+      <a class="logo" href="#" data-i18n-aria="logoHome" aria-label="Blackcarbon — на главную">
         <img src="assets/logo/logo-round.png" alt="Blackcarbon" width="640" height="640" />
       </a>
 
       <div class="nav nav--right">
-        <nav class="nav nav--desktop" aria-label="Основное меню справа">
-          <a href="#about">О нас</a>
-          <a href="#contacts">Контакты</a>
+        <nav class="nav nav--desktop" data-i18n-aria="navRight" aria-label="Основное меню справа">
+          <a href="#about" data-i18n="navAbout">О нас</a>
+          <a href="#contacts" data-i18n="navContacts">Контакты</a>
         </nav>
         <div class="header-actions">
-          <button class="icon-btn menu-toggle" type="button" aria-label="Открыть меню" data-menu-open>
+          <div class="lang" role="group" data-i18n-aria="langLabel" aria-label="Язык">
+            <button type="button" data-set-lang="ru">RU</button>
+            <button type="button" data-set-lang="uz">UZ</button>
+            <button type="button" data-set-lang="en">EN</button>
+          </div>
+          <a class="icon-btn" href="account.html" data-i18n-aria="account" aria-label="Кабинет">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 19.2c1.4-3 3.6-4.4 6.5-4.4s5.1 1.4 6.5 4.4"/></svg>
+          </a>
+          <a class="icon-btn cart-btn" href="cart.html" data-i18n-aria="cart" aria-label="Корзина">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6.2 7.2h14.2l-1.5 8.1a2 2 0 0 1-2 1.6H9.1a2 2 0 0 1-2-1.6L5.4 4.8H3"/><circle cx="9.2" cy="19.6" r="1.25" fill="currentColor" stroke="none"/><circle cx="16.8" cy="19.6" r="1.25" fill="currentColor" stroke="none"/></svg>
+            <span class="cart-count" data-cart-count hidden>0</span>
+          </a>
+          <button class="icon-btn menu-toggle" type="button" data-i18n-aria="menuOpen" aria-label="Открыть меню" data-menu-open>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
           </button>
         </div>
@@ -43,13 +55,18 @@
   <!-- Мобильное меню -->
   <div class="mobile-panel" data-menu>
     <div class="mobile-panel__sheet">
-      <button class="icon-btn mobile-panel__close" type="button" aria-label="Закрыть" data-menu-close>
+      <button class="icon-btn mobile-panel__close" type="button" data-i18n-aria="menuClose" aria-label="Закрыть" data-menu-close>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
       </button>
-      <a href="#about" data-menu-close>Уголь</a>
-      <a href="#partner" data-menu-close>Стать партнёром</a>
-      <a href="#about" data-menu-close>О нас</a>
-      <a href="#contacts" data-menu-close>Контакты</a>
+      <div class="lang lang--menu" role="group" data-i18n-aria="langLabel" aria-label="Язык">
+        <button type="button" data-set-lang="ru">RU</button>
+        <button type="button" data-set-lang="uz">UZ</button>
+        <button type="button" data-set-lang="en">EN</button>
+      </div>
+      <a href="product.html" data-menu-close data-i18n="navCoal">Уголь</a>
+      <a href="#partner" data-menu-close data-i18n="navPartner">Стать партнером</a>
+      <a href="#about" data-menu-close data-i18n="navAbout">О нас</a>
+      <a href="#contacts" data-menu-close data-i18n="navContacts">Контакты</a>
     </div>
   </div>
 
@@ -58,25 +75,25 @@
     <section class="hero" data-hero-slider>
       <div class="hero__slides" aria-hidden="true">
         <div class="hero__slide is-active">
-          <img src="assets/photos/hero-1.jpg" alt="Шашлык на углях" />
+          <img src="assets/photos/hero-1.jpg" data-i18n-alt="heroAlt1" alt="Шашлык на углях" />
         </div>
         <div class="hero__slide">
-          <img src="assets/photos/hero-2.jpg" alt="Кебаб на мангале" />
+          <img src="assets/photos/hero-2.jpg" data-i18n-alt="heroAlt2" alt="Кебаб на мангале" />
         </div>
         <div class="hero__slide">
-          <img src="assets/photos/hero-3.jpg" alt="Мясо на древесном угле" />
+          <img src="assets/photos/hero-3.jpg" data-i18n-alt="heroAlt3" alt="Мясо на древесном угле" />
         </div>
         <div class="hero__slide">
-          <img src="assets/photos/hero-4.jpg" alt="Шашлыки и овощи" />
+          <img src="assets/photos/hero-4.jpg" data-i18n-alt="heroAlt4" alt="Шашлыки и овощи" />
         </div>
         <div class="hero__slide">
-          <img src="assets/photos/hero-5.jpg" alt="Говядина на огне" />
+          <img src="assets/photos/hero-5.jpg" data-i18n-alt="heroAlt5" alt="Говядина на огне" />
         </div>
       </div>
       <div class="hero__overlay"></div>
       <div class="hero__content">
-        <h1>Зажги праздник</h1>
-        <a class="btn btn--orange" href="#about">Купить сейчас</a>
+        <h1 data-i18n="heroTitle">Зажги праздник</h1>
+        <a class="btn btn--orange" href="product.html" data-i18n="heroBuy">Купить сейчас</a>
       </div>
     </section>
 
@@ -84,20 +101,20 @@
     <section class="trust">
       <div class="container trust__grid">
         <article class="trust__item reveal">
-          <h3>Экологически чистый продукт!</h3>
-          <p>Без запаха</p>
+          <h3 data-i18n="trust1t">Экологически чистый продукт!</h3>
+          <p data-i18n="trust1p">Без запаха</p>
         </article>
         <article class="trust__item reveal">
-          <h3>Гарантия качества</h3>
-          <p>100% удовлетворённость. Без лишних вопросов.</p>
+          <h3 data-i18n="trust2t">Гарантия качества</h3>
+          <p data-i18n="trust2p">100% удовлетворенность. Без лишних вопросов.</p>
         </article>
         <article class="trust__item reveal">
-          <h3>2X Горячее!</h3>
-          <p>Горение до 2 часов</p>
+          <h3 data-i18n="trust3t">2X Горячее!</h3>
+          <p data-i18n="trust3p">Горение до 2 часов</p>
         </article>
         <article class="trust__item reveal">
-          <h3>Сервис высшего уровня</h3>
-          <p>Отправка заказов в течение 24 часов.</p>
+          <h3 data-i18n="trust4t">Сервис высшего уровня</h3>
+          <p data-i18n="trust4p">Отправка заказов в течение 24 часов.</p>
         </article>
       </div>
     </section>
@@ -105,25 +122,25 @@
     <!-- Не весь уголь одинаков -->
     <section class="banner" id="about">
       <div class="banner__media">
-        <img src="assets/photos/embers.jpg" alt="Жар древесного угля" />
+        <img src="assets/photos/embers.jpg" data-i18n-alt="emberAlt" alt="Жар древесного угля" />
       </div>
       <div class="banner__overlay"></div>
       <div class="banner__layout">
         <div class="banner__content reveal">
-          <h2>Не весь уголь одинаков</h2>
+          <h2 data-i18n="bannerTitle">Не весь уголь одинаков</h2>
           <div class="banner__tags">
-            <span>Отборная берёза</span>
+            <span data-i18n="tagBirch">Отборная береза</span>
             <span class="x">×</span>
-            <span>Чистый пиролиз</span>
+            <span data-i18n="tagPyro">Чистый пиролиз</span>
             <span class="x">×</span>
-            <span>Ровный жар</span>
+            <span data-i18n="tagHeat">Ровный жар</span>
             <span class="x">×</span>
-            <span>Без лишнего дыма</span>
+            <span data-i18n="tagSmoke">Без лишнего дыма</span>
           </div>
-          <a class="btn btn--outline" href="#partner">Связаться с нами</a>
+          <a class="btn btn--outline" href="#partner" data-i18n="contact">Связаться с нами</a>
         </div>
         <div class="banner__product reveal">
-          <img src="assets/photos/charcoal.png" alt="Уголь Blackcarbon, мешки 1 кг и 3 кг" />
+          <img src="assets/photos/charcoal.png" data-i18n-alt="productAlt" alt="Уголь Blackcarbon, мешки 1 кг и 3 кг" />
         </div>
       </div>
     </section>
@@ -133,40 +150,40 @@
       <div class="container">
         <div class="recipes__head reveal">
           <div>
-            <p class="recipes__eyebrow">Рецепты и советы</p>
-            <h2>Овладей огнём</h2>
+            <p class="recipes__eyebrow" data-i18n="recipesEyebrow">Рецепты и советы</p>
+            <h2 data-i18n="recipesTitle">Овладей огнем</h2>
           </div>
-          <a class="btn btn--outline" href="#recipes">Все рецепты</a>
+          <a class="btn btn--outline" href="#recipes" data-i18n="recipesAll">Все рецепты</a>
         </div>
         <div class="recipe-grid">
           <button class="recipe-card reveal" type="button" data-recipe="chicken">
             <div class="recipe-card__media">
-              <img src="assets/photos/recipe-1.jpg" alt="Курица на углях" />
+              <img src="assets/photos/recipe-1.jpg" data-i18n-alt="altChicken" alt="Курица на углях" />
             </div>
             <div class="recipe-card__body">
-              <p class="recipe-card__cat">Курица</p>
-              <h3>Шашлык из курицы на углях</h3>
-              <p class="recipe-card__meta">Легко · около 1 часа</p>
+              <p class="recipe-card__cat" data-i18n="catChicken">Курица</p>
+              <h3 data-i18n="titleChicken">Шашлык из курицы на углях</h3>
+              <p class="recipe-card__meta" data-i18n="metaChicken">Легко · около 1 часа</p>
             </div>
           </button>
           <button class="recipe-card reveal" type="button" data-recipe="lamb">
             <div class="recipe-card__media">
-              <img src="assets/photos/recipe-2.jpg" alt="Шашлык из баранины" />
+              <img src="assets/photos/recipe-2.jpg" data-i18n-alt="altLamb" alt="Шашлык из баранины" />
             </div>
             <div class="recipe-card__body">
-              <p class="recipe-card__cat">Баранина</p>
-              <h3>Классический шашлык из баранины</h3>
-              <p class="recipe-card__meta">Средняя сложность · 1–2 часа</p>
+              <p class="recipe-card__cat" data-i18n="catLamb">Баранина</p>
+              <h3 data-i18n="titleLamb">Классический шашлык из баранины</h3>
+              <p class="recipe-card__meta" data-i18n="metaLamb">Средняя сложность · 1–2 часа</p>
             </div>
           </button>
           <button class="recipe-card reveal" type="button" data-recipe="beef">
             <div class="recipe-card__media">
-              <img src="assets/photos/recipe-3.jpg" alt="Говядина на мангале" />
+              <img src="assets/photos/recipe-3.jpg" data-i18n-alt="altBeef" alt="Говядина на мангале" />
             </div>
             <div class="recipe-card__body">
-              <p class="recipe-card__cat">Говядина</p>
-              <h3>Говяжий шашлык на мангале</h3>
-              <p class="recipe-card__meta">Средняя сложность · около 1.5 часа</p>
+              <p class="recipe-card__cat" data-i18n="catBeef">Говядина</p>
+              <h3 data-i18n="titleBeef">Говяжий шашлык на мангале</h3>
+              <p class="recipe-card__meta" data-i18n="metaBeef">Средняя сложность · около 1.5 часа</p>
             </div>
           </button>
         </div>
@@ -179,30 +196,35 @@
         <div class="lead__box reveal">
           <div class="lead__intro">
             <p class="lead__eyebrow"></p>
-            <h2>Напишите нам</h2>
+            <h2 data-i18n="leadTitle">Напишите нам</h2>
             <p></p>
           </div>
           <form class="lead__form" data-lead-form>
             <div class="lead__row">
               <label>
-                <span>Фамилия</span>
-                <input type="text" name="lastName" required placeholder="Каримов" autocomplete="family-name" />
+                <span data-i18n="labelLast">Фамилия</span>
+                <input type="text" name="lastName" required data-i18n-placeholder="phLast" placeholder="Каримов" autocomplete="family-name" />
               </label>
               <label>
-                <span>Имя</span>
-                <input type="text" name="firstName" required placeholder="Алишер" autocomplete="given-name" />
+                <span data-i18n="labelFirst">Имя</span>
+                <input type="text" name="firstName" required data-i18n-placeholder="phFirst" placeholder="Алишер" autocomplete="given-name" />
+              </label>
+            </div>
+            <div class="lead__row">
+              <label>
+                <span data-i18n="labelEmail">Почта</span>
+                <input type="email" name="email" required data-i18n-placeholder="phEmail" placeholder="you@mail.com" autocomplete="email" />
+              </label>
+              <label>
+                <span data-i18n="labelPhone">Телефон</span>
+                <input type="tel" name="phone" required inputmode="tel" autocomplete="tel" data-i18n-placeholder="phPhone" placeholder="+998 90 000-00-00" />
               </label>
             </div>
             <label>
-              <span>Почта</span>
-              <input type="email" name="email" required placeholder="you@mail.com" autocomplete="email" />
+              <span data-i18n="labelMessage">Сообщение</span>
+              <textarea name="message" rows="5" required data-i18n-placeholder="phMessage" placeholder="Напишите, чем можем помочь"></textarea>
             </label>
-            <label>
-              <span>Сообщение</span>
-              <textarea name="message" rows="5" required placeholder="Напишите, чем можем помочь"></textarea>
-            </label>
-            <button class="btn btn--orange lead__submit" type="submit">Отправить</button>
-            <p class="lead__note" data-lead-msg hidden></p>
+            <button class="btn btn--orange lead__submit" type="submit" data-i18n="send">Отправить</button>
           </form>
         </div>
       </div>
@@ -214,37 +236,44 @@
     <div class="container">
       <div class="footer-grid">
         <div class="office">
-          <h4>Локация Офиса</h4>
+          <h4 data-i18n="officeTitle">Локация Офиса</h4>
           <div class="office-frame">
             <div class="office-map" data-office-map></div>
-            <a class="office-route" href="https://www.google.com/maps/dir/?api=1&amp;destination=41.170705,69.258281" target="_blank" rel="noopener noreferrer">Построить маршрут</a>
+            <div class="route-picker">
+              <button type="button" class="office-route" data-route-open data-i18n="route" aria-expanded="false" aria-haspopup="true">Построить маршрут</button>
+              <div class="route-menu" data-route-menu hidden>
+                <a href="https://www.google.com/maps/dir/?api=1&amp;destination=41.170705,69.258281" target="_blank" rel="noopener noreferrer" data-i18n="routeGoogle">Google Карты</a>
+                <a href="https://yandex.uz/maps/?rtext=~41.170705,69.258281&amp;rtt=auto" target="_blank" rel="noopener noreferrer" data-i18n="routeYandex">Яндекс Карты</a>
+                <a href="https://3.redirect.appmetrica.yandex.com/route?end-lat=41.170705&amp;end-lon=69.258281&amp;ref=blackcarbon&amp;appmetrica_tracking_id=25395763362139037" target="_blank" rel="noopener noreferrer" data-i18n="routeTaxi">Яндекс Такси</a>
+              </div>
+            </div>
           </div>
         </div>
         <div id="contacts">
-          <h4>Контакты</h4>
-          <p>+998 (90) 336-08-06<br />Пн–Пт, 9:00–18:00</p>
+          <h4 data-i18n="navContacts">Контакты</h4>
+          <p>+998 (90) 336-08-06<br /><span data-i18n="hours">Пн–Пт, 9:00–18:00</span></p>
           <p><a href="mailto:sales@blackcarbon.uz">sales@blackcarbon.uz</a></p>
-          <p><a href="#contacts">Связаться с нами</a></p>
+          <p><a href="#contacts" data-i18n="contact">Связаться с нами</a></p>
         </div>
         <div>
-          <h4>Помощь</h4>
+          <h4 data-i18n="help">Помощь</h4>
           <ul>
-            <li><a href="#">Доставка</a></li>
-            <li><a href="#">Возврат и обмен</a></li>
+            <li><a href="#" data-i18n="delivery">Доставка</a></li>
+            <li><a href="#" data-i18n="returns">Возврат и обмен</a></li>
             <li><a href="#">FAQ</a></li>
           </ul>
         </div>
         <div id="stores">
-          <h4>Компания</h4>
+          <h4 data-i18n="company">Компания</h4>
           <ul>
-            <li><a href="#about">О нас</a></li>
-            <li><a href="#partner">Стать партнёром</a></li>
-            <li><a href="#stores">Найти дилера</a></li>
+            <li><a href="#about" data-i18n="navAbout">О нас</a></li>
+            <li><a href="#partner" data-i18n="navPartner">Стать партнером</a></li>
+            <li><a href="#stores" data-i18n="dealer">Найти дилера</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <div>© <span data-year></span> Blackcarbon. Все права защищены.</div>
+        <div>© <span data-year></span> Blackcarbon. <span data-i18n="rights">Все права защищены.</span></div>
         <div class="socials" aria-label="Соцсети">
           <span aria-label="Facebook" title="Facebook">
             <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
@@ -257,20 +286,20 @@
           </span>
         </div>
         <div>
-          <a href="#">Политика конфиденциальности</a>
+          <a href="#" data-i18n="privacy">Политика конфиденциальности</a>
           ·
-          <a href="#">Условия использования</a>
+          <a href="#" data-i18n="terms">Условия использования</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <a class="float-rewards" href="#partner">Стать партнёром</a>
+  <a class="float-rewards" href="#partner" data-i18n="navPartner">Стать партнером</a>
 
   <div class="recipe-modal" data-recipe-modal hidden>
     <div class="recipe-modal__backdrop" data-recipe-close></div>
     <article class="recipe-modal__panel" role="dialog" aria-modal="true" aria-labelledby="recipe-title">
-      <button class="recipe-modal__close" type="button" data-recipe-close aria-label="Закрыть">
+      <button class="recipe-modal__close" type="button" data-recipe-close data-i18n-aria="menuClose" aria-label="Закрыть">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
       </button>
       <p class="recipe-modal__cat" data-recipe-cat></p>
@@ -279,11 +308,11 @@
       <p class="recipe-modal__lead" data-recipe-lead></p>
       <div class="recipe-modal__grid">
         <div>
-          <h3>Ингредиенты</h3>
+          <h3 data-i18n="ingredients">Ингредиенты</h3>
           <ul data-recipe-ingredients></ul>
         </div>
         <div>
-          <h3>Как жарить</h3>
+          <h3 data-i18n="howTo">Как жарить</h3>
           <ol data-recipe-steps></ol>
         </div>
       </div>
@@ -291,6 +320,8 @@
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/shop.js"></script>
 </body>
 </html>
